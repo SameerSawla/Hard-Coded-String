@@ -13,10 +13,9 @@ public class Main{
 	public static void main(String args[])
 	{
 
-		//Path of the file
-		String path = "/home/sameer/Downloads/";
+		String path = " path of the file ";
 		//Name of the file
-		String name = "new.rtf";
+		String name = " file name with extension ";
 
 		//Helper Variables
 		String currentFileName="";

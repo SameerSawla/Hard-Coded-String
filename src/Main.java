@@ -12,10 +12,10 @@ public class Main{
 	
 	public static void main(String args[])
 	{
-
-		String path = " path of the file ";
+		//Path of the file
+		String path = "Path of the file";
 		//Name of the file
-		String name = " file name with extension ";
+		String name = "Name of the file";
 
 		//Helper Variables
 		String currentFileName="";
@@ -44,10 +44,7 @@ public class Main{
 				 
 				   if(matchFile.find())
 				   {
-//					   System.out.println("found File");
-					   String foundFile = matchFile.group(1);
-//					   System.out.println(foundFile);
-					   
+					   String foundFile = matchFile.group(1);   
 					   if(Helper.getFileObject(files, foundFile)==null)
 					   {
 						   Files newFile = new Files(foundFile);
@@ -58,25 +55,24 @@ public class Main{
 				   
 				   if(matchLine.find())
 				   {
-//					   System.out.println("found Line");
-					   String foundLine = matchLine.group(1);
-//					   System.out.println(foundLine);
-					   
+					   String foundLine = matchLine.group(1);   
 					   Files lastFile  = Helper.getTheLastFile(files);
 					   lastFile.getLines().add(new lineInfo(foundLine));
-//					   System.out.println("test");
 					   currentLineNos = foundLine;
 				   }
 				 
 				   while(matchData.find())
 				   {
-//					   System.out.println("found Data");
 					   line = line.substring(matchData.end(), line.length()-1);
-					   String foundData = matchData.group(1);
-//					   System.out.println(foundData);
-					   
+					   String foundData = matchData.group(1);   
 					   Files currentFile = Helper.getFileObject(files, currentFileName);
 					   lineInfo currentLineInfoObject = Helper.getLineInfoObject(currentFile.getLines(), currentLineNos);
+					   if(currentLineInfoObject==null)
+                       {
+                               lineInfo newLineInfoObject = new lineInfo(currentLineNos);
+                               currentFile.getLines().add(newLineInfoObject);
+                               currentLineInfoObject= newLineInfoObject;
+                       }
 					   currentLineInfoObject.getDatas().add(new Data(foundData));
 					   
 					   matchData = patternData.matcher(line);

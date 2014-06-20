@@ -65,6 +65,14 @@ public class Main{
 				   {
 					   line = line.substring(matchData.end(), line.length()-1);
 					   String foundData = matchData.group(1);   
+					   
+					   //Adding in the data structure to generate json file
+					   if(!jsonCreationHelper.jsonInput.contains(foundData) && !foundData.isEmpty() && !foundData.trim().equals(""))
+					   {
+						   jsonCreationHelper.jsonInput.add(foundData);
+						   jsonCreationHelper.counter++;
+					   }
+					   
 					   Files currentFile = Helper.getFileObject(files, currentFileName);
 					   lineInfo currentLineInfoObject = Helper.getLineInfoObject(currentFile.getLines(), currentLineNos);
 					   if(currentLineInfoObject==null)
@@ -85,8 +93,8 @@ public class Main{
 			    }
 			    in.close();
 			 
-			    
-
+			 jsonCreationHelper.createJsonFile();
+			 System.out.println("Finished");
 		 	}
 		 catch(Exception e)
 		 	{

@@ -21,7 +21,7 @@ public class jsonCreationHelper {
 		bw.write("Total number of conversions : " + jsonCreationHelper.counter);
 		bw.write("\n\n{\n");
 		for (String tempData : jsonCreationHelper.jsonInput) {
-			bw.write(tempData + "  :  " + tempData + ",\n");
+			bw.write("\""+ tempData + "\"" + "  :  " + "\"" +  tempData + "\"" + ",\n");
 		}
 		bw.write("}");
 
